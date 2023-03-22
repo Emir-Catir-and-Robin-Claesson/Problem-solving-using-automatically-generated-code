@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemperatureGenerator", "TemperatureGenerator\TemperatureGenerator.csproj", "{2D818119-BFF2-48A9-97C2-ACA730D3F90B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D818119-BFF2-48A9-97C2-ACA730D3F90B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D818119-BFF2-48A9-97C2-ACA730D3F90B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D818119-BFF2-48A9-97C2-ACA730D3F90B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D818119-BFF2-48A9-97C2-ACA730D3F90B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FC8FF98-6382-43E4-A999-40EB44B4C407}
+	EndGlobalSection
+EndGlobal
