@@ -70,7 +70,7 @@ namespace TemperatureProblemTest
                     globalMin = localMin;
                 globalTotal += localTotal;
 
-                var localAvg = localTotal / numOfMeasurements;
+                var localAvg = Math.Round(localTotal / numOfMeasurements, 1);
 
                 var outputData = outputRows[i].TrimEnd().Split();
                 var outputMin = double.Parse(outputData[0]);
@@ -86,7 +86,7 @@ namespace TemperatureProblemTest
 
             }
 
-            var globalAvg = globalTotal / (numOfMeasurements * numOfWeeks);
+            var globalAvg = Math.Round(globalTotal / (numOfMeasurements * numOfWeeks), 1);
 
             var outputGlobalData = outputRows.Last().TrimEnd().Split();
             var outputGlobalMin = double.Parse(outputGlobalData[0]);

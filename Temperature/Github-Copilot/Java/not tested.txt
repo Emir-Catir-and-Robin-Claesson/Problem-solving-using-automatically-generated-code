@@ -1,0 +1,265 @@
+=======
+
+                double[][] measurements = new double[4][7];
+        measurements[0][0] = 10.0;
+        measurements[0][1] = 11.0;
+        measurements[0][2] = 12.0;
+        measurements[0][3] = 13.0;
+        measurements[0][4] = 14.0;
+        measurements[0][5] = 15.0;
+        measurements[0][6] = 16.0;
+        measurements[1][0] = 20.0;
+        measurements[1][1] = 21.0;
+        measurements[1][2] = 22.0;
+        measurements[1][3] = 23.0;
+        measurements[1][4] = 24.0;
+        measurements[1][5] = 25.0;
+        measurements[1][6] = 26.0;
+        measurements[2][0] = 30.0;
+        measurements[2][1] = 31.0;
+        measurements[2][2] = 32.0;
+        measurements[2][3] = 33.0;
+        measurements[2][4] = 34.0;
+        measurements[2][5] = 35.0;
+        measurements[2][6] = 36.0;
+        measurements[3][0] = 40.0;
+        measurements[3][1] = 41.0;
+        measurements[3][2] = 42.0;
+        measurements[3][3] = 43.0;
+        measurements[3][4] = 44.0;
+        measurements[3][5] = 45.0;
+        measurements[3][6] = 46.0;
+
+        double min = measurements[0][0];
+        double max = measurements[0][0];
+        double sum = 0.0;
+        int count = 0;
+        for (int i = 0; i < measurements.length; i++) {
+            double minWeek = measurements[i][0];
+            double maxWeek = measurements[i][0];
+            double sumWeek = 0.0;
+            for (int j = 0; j < measurements[i].length; j++) {
+                System.out.print(measurements[i][j] + " ");
+                if (measurements[i][
+
+=======
+
+                //Declare the variables
+        int numberOfWeeks = 0;
+        int numberOfMeasurements = 0;
+        double measurement = 0;
+        double largest = 0;
+        double smallest = 0;
+        double sum = 0;
+        double average = 0;
+        double min = 0;
+        double max = 0;
+        double sumAll = 0;
+        double averageAll = 0;
+        double minAll = 0;
+        double maxAll = 0;
+        double measurementAll = 0;
+        int counter = 0;
+
+        //Read the input from the standard input
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        numberOfWeeks = scanner.nextInt();
+        numberOfMeasurements = scanner.nextInt();
+
+        //For each week
+        for (int i = 0; i < numberOfWeeks; i++) {
+            //For each measurement
+            for (int j = 0; j < numberOfMeasurements; j++) {
+                //Read the measurement
+                measurement = scanner.nextDouble();
+                //Calculate the sum
+                sum = sum + measurement;
+                //Calculate the average
+                average = sum / numberOfMeasurements;
+                //Calculate the smallest
+                if (measurement < smallest) {
+                    smallest = measurement;
+                }
+                //Calculate the largest
+                if (measurement > largest) {
+                    largest = measurement;
+                }
+            }
+            //Print the smallest, largest and average to 1 point precision temperature separated by spaces
+            System.out.println(smallest + " " + largest + " " + average);
+            //Calculate the sumAll
+            sumAll = sumAll + sum;
+            //Calculate the averageAll
+            averageAll = sumAll / (numberOfWeeks * numberOfMeasurements);
+            //Calculate the smallestAll
+            if (smallest < min) {
+                min = smallest;
+            }
+            //Calculate the largestAll
+            if (largest > max) {
+                max = largest;
+            }
+            //Reset the smallest, largest and average
+            smallest = 0;
+            largest = 0;
+            sum = 0;
+        }
+        //Print the minimum, maximum and average temperature for the entire measurement period to 1 point precision separated by spaces
+        System.out.println(min + " " + max + " " + averageAll);
+
+=======
+
+                //Check that the user has entered the correct number of command line arguments
+        if (args.length != 1) {
+            System.out.println("Usage: java Temperature1 <filename>");
+            System.exit(1);
+        }
+        //Read the file
+        String filename = args[0];
+        java.io.File file = new java.io.File(filename);
+        if (!file.exists()) {
+            System.out.println("The file " + filename + " does not exist");
+            System.exit(2);
+        }
+        //Create a Scanner for the file
+        java.util.Scanner input = new java.util.Scanner(file);
+        //Read the first line of the file
+        String firstLine = input.nextLine();
+        //Extract the number of weeks
+        int numberOfWeeks = Integer.parseInt(firstLine.split(" ")[0]);
+        //Extract the number of measurements per week
+        int numberOfMeasurements = Integer.parseInt(firstLine.split(" ")[1]);
+        //Create an array to store the measurements
+        double[][] measurements = new double[numberOfWeeks][numberOfMeasurements];
+        //Read the measurements
+        int week = 0;
+        while (input.hasNextLine()) {
+            String line = input.nextLine();
+            String[] lineParts = line.split(" ");
+            for (int i = 0; i < lineParts.length; i++) {
+                measurements[week][i] = Double.parseDouble(lineParts[i]);
+            }
+            week++;
+        }
+        //Close the file
+        input.close();
+        //Print the measurements
+        for (int i = 0; i < measurements.length; i++) {
+            for (int j = 0; j < measurements[i].length; j++) {
+                System.out.print(measurements[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+=======
+
+                //Read in the input data
+        int weeks = 3;
+        int measurements = 4;
+        double[][] data = new double[weeks][measurements];
+        data[0][0] = 1.0;
+        data[0][1] = 2.0;
+        data[0][2] = 3.0;
+        data[0][3] = 4.0;
+        data[1][0] = 2.0;
+        data[1][1] = 3.0;
+        data[1][2] = 4.0;
+        data[1][3] = 5.0;
+        data[2][0] = 3.0;
+        data[2][1] = 4.0;
+        data[2][2] = 5.0;
+        data[2][3] = 6.0;
+
+        //Compute the minimum, maximum and average temperature for each week
+        double[] min = new double[weeks];
+        double[] max = new double[weeks];
+        double[] avg = new double[weeks];
+        for (int i = 0; i < weeks; i++) {
+            min[i] = data[i][0];
+            max[i] = data[i][0];
+            double sum = 0;
+            for (int j = 0; j < measurements; j++) {
+                if (data[i][j] < min[i]) {
+                    min[i] = data[i][j];
+                }
+                if (data[i][j] > max[i]) {
+                    max[i] = data[i][j];
+                }
+                sum += data[i][j];
+            }
+            avg[i] = sum / measurements;
+        }
+
+        //Compute the minimum, maximum and average temperature for the entire measurement period
+        double minTotal = min[0];
+        double maxTotal = max[0];
+        double sumTotal = 0;
+        for (int i = 0; i < weeks; i++) {
+            if (min[i] < minTotal) {
+                minTotal = min[i];
+            }
+            if (max[i] > maxTotal) {
+                maxTotal = max[i];
+            }
+            sumTotal += avg[i];
+        }
+        double avgTotal = sumTotal / weeks;
+
+        //Output the results
+        for (int i = 0; i <
+
+=======
+
+                // TODO code application logic here
+
+=======
+
+                //Read the input from standard input.
+        int weeks = 0;
+        int measurements = 0;
+        float[][] temperatures = new float[weeks][measurements];
+        float[] smallest = new float[weeks];
+        float[] largest = new float[weeks];
+        float[] average = new float[weeks];
+        float[] total = new float[weeks];
+        float globalSmallest;
+        float globalLargest;
+        float globalAverage;
+        float globalTotal;
+
+        //Process the input data.
+        for (int i = 0; i < weeks; i++) {
+            for (int j = 0; j < measurements; j++) {
+                total[i] += temperatures[i][j];
+            }
+            average[i] = total[i] / measurements;
+            smallest[i] = temperatures[i][0];
+            largest[i] = temperatures[i][0];
+            for (int j = 1; j < measurements; j++) {
+                if (temperatures[i][j] < smallest[i]) {
+                    smallest[i] = temperatures[i][j];
+                }
+                if (temperatures[i][j] > largest[i]) {
+                    largest[i] = temperatures[i][j];
+                }
+            }
+        }
+        globalSmallest = smallest[0];
+        globalLargest = largest[0];
+        globalTotal = total[0];
+        for (int i = 1; i < weeks; i++) {
+            if (smallest[i] < globalSmallest) {
+                globalSmallest = smallest[i];
+            }
+            if (largest[i] > globalLargest) {
+                globalLargest = largest[i];
+            }
+            globalTotal += total[i];
+        }
+        globalAverage = globalTotal / (weeks * measurements);
+
+        //Write the output to standard output.
+        for (int i = 0; i < weeks; i++) {
+            System.out.println(smallest[i] + " " + largest[i] + " " + average[i]);
+        }
+        System.out.println(globalSmallest + " " + globalLargest + " " + globalAverage);
