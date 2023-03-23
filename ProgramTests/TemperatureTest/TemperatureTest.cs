@@ -23,7 +23,7 @@ namespace TemperatureProblemTest
             {
                 for (int j = 0; j < numOfMeassurements; j++)
                 {
-                    stringBuilder.Append($"{random.Next(-100, 310)/10.0} ");
+                    stringBuilder.Append($"{random.Next(-10, 31)} ");
                 }
 
                 stringBuilder.AppendLine();
