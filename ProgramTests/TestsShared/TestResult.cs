@@ -14,12 +14,12 @@ namespace TestsShared
         /// <summary>
         /// Logs for all rounds that was succesfull (correct output)
         /// </summary>
-        public List<TestLog> SucceededTests { get; private init; } = new List<TestLog>();
+        public List<TestLog> SucceededTests { get; set; } = new List<TestLog>();
 
         /// <summary>
         /// Logs for all rounds that was unsuccesfull (incorrect output)
         /// </summary>
-        public List<TestLog> FailedTests { get; private init; } = new List<TestLog>();
+        public List<TestLog> FailedTests { get; set; } = new List<TestLog>();
 
         /// <summary>
         /// Gets the ammount of succeeded and failed tests in a string 
