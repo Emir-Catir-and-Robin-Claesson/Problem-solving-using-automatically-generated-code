@@ -48,7 +48,7 @@ namespace TemperatureProblemTest
 
             for (int i = 0; i < numOfWeeks; i++)
             {
-                var temps = inputRows[1 + i].TrimEnd().Split(' ').Select(m => double.Parse(m)).ToList();
+                var temps = inputRows[1 + i].TrimEnd().Split(' ').Select(m => TestHelp.ParseDouble(m)).ToList();
 
                 var localMin = double.MaxValue;
                 var localMax = double.MinValue;
