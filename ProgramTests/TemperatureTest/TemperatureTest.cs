@@ -35,7 +35,7 @@ namespace TemperatureProblemTest
         protected override (bool isCorrect, string failMessage) VerifyOutput(string testInput, string testOutput)
         {
             var inputRows = testInput.TrimEnd().Replace("\r", "").Split('\n');
-            var outputRows = testOutput.TrimEnd().Replace("\r", "").Replace(".", ",").Split('\n');
+            var outputRows = testOutput.TrimEnd().Replace("\r", "").Split('\n');
 
             var firstInputRowSplit = inputRows[0].Split(' ');
             var numOfWeeks = int.Parse(firstInputRowSplit[0]);
@@ -73,9 +73,9 @@ namespace TemperatureProblemTest
                 var localAvg = Math.Round(localTotal / numOfMeasurements, 1);
 
                 var outputData = outputRows[i].TrimEnd().Split();
-                var outputMin = double.Parse(outputData[0]);
-                var outputMax = double.Parse(outputData[1]);
-                var outputAvg = double.Parse(outputData[2]);
+                var outputMin = TestHelp.ParseDouble(outputData[0]); 
+                var outputMax = TestHelp.ParseDouble(outputData[1]);
+                var outputAvg = TestHelp.ParseDouble(outputData[2]);
 
                 if (outputMin != localMin)
                     return (false, $"Wrong local min on week '{i+1}': Gave '{outputMin}' but should have been '{localMin}'");
@@ -89,9 +89,9 @@ namespace TemperatureProblemTest
             var globalAvg = Math.Round(globalTotal / (numOfMeasurements * numOfWeeks), 1);
 
             var outputGlobalData = outputRows.Last().TrimEnd().Split();
-            var outputGlobalMin = double.Parse(outputGlobalData[0]);
-            var outputGlobalMax = double.Parse(outputGlobalData[1]);
-            var outputGlobalAvg = double.Parse(outputGlobalData[2]);
+            var outputGlobalMin = TestHelp.ParseDouble(outputGlobalData[0]);
+            var outputGlobalMax = TestHelp.ParseDouble(outputGlobalData[1]);
+            var outputGlobalAvg = TestHelp.ParseDouble(outputGlobalData[2]);
 
             if (outputGlobalMin != globalMin)
                 return (false, $"Wrong global min: Gave '{outputGlobalMin}' but should have been '{globalMin}'");
