@@ -8,5 +8,4 @@ char floatSeparator = Console.ReadLine()[0];
 
 var test = new TemperatureTest(testInfo, floatSeparator);
 var testResult = test.RunTest();
-
 Console.WriteLine(testResult.GetTestStats());
