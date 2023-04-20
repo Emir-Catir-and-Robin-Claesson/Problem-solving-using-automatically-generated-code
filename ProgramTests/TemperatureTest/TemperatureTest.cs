@@ -1,12 +1,24 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using TestsShared;
 
 namespace TemperatureProblemTest
 {
     public class TemperatureTest : ProgramTest
     {
-        public TemperatureTest(TestInfo testinfo) : base(testinfo)
+        //To take into account what floating number separator is used
+        CultureInfo _culture;
+
+        public TemperatureTest(TestInfo testinfo, char floatSeparator) : base(testinfo)
         {
+            if (floatSeparator == ',')
+            {
+                _culture = new CultureInfo("fr-fr");
+            }
+            else
+            {
+                _culture = new CultureInfo("en-us");
+            }
         }
 
         protected override string GenerateInput()
@@ -23,7 +35,10 @@ namespace TemperatureProblemTest
             {
                 for (int j = 0; j < numOfMeassurements; j++)
                 {
-                    stringBuilder.Append($"{random.Next(-10, 31)} ");
+                    var rnd = random.Next(-100, 310);
+                    var number = rnd / 10.0;
+
+                    stringBuilder.Append($"{(rnd / 10.0).ToString(_culture)} ");
                 }
 
                 stringBuilder.AppendLine();
@@ -48,7 +63,7 @@ namespace TemperatureProblemTest
 
             for (int i = 0; i < numOfWeeks; i++)
             {
-                var temps = inputRows[1 + i].TrimEnd().Split(' ').Select(m => TestHelp.ParseDouble(m)).ToList();
+                var temps = inputRows[1 + i].TrimEnd().Split(' ').Select(m => double.Parse(m, _culture)).ToList();
 
                 var localMin = double.MaxValue;
                 var localMax = double.MinValue;
@@ -73,12 +88,12 @@ namespace TemperatureProblemTest
                 var localAvg = Math.Round(localTotal / numOfMeasurements, 1);
 
                 var outputData = outputRows[i].TrimEnd().Split();
-                var outputMin = TestHelp.ParseDouble(outputData[0]); 
-                var outputMax = TestHelp.ParseDouble(outputData[1]);
-                var outputAvg = TestHelp.ParseDouble(outputData[2]);
+                var outputMin = double.Parse(outputData[0], _culture);
+                var outputMax = double.Parse(outputData[1], _culture);
+                var outputAvg = double.Parse(outputData[2], _culture);
 
                 if (outputMin != localMin)
-                    return (false, $"Wrong local min on week '{i+1}': Gave '{outputMin}' but should have been '{localMin}'");
+                    return (false, $"Wrong local min on week '{i + 1}': Gave '{outputMin}' but should have been '{localMin}'");
                 if (outputMax != localMax)
                     return (false, $"Wrong local max on week '{i + 1}': Gave '{outputMax}' but should have been '{localMax}'");
                 if (outputAvg != localAvg)
@@ -89,9 +104,9 @@ namespace TemperatureProblemTest
             var globalAvg = Math.Round(globalTotal / (numOfMeasurements * numOfWeeks), 1);
 
             var outputGlobalData = outputRows.Last().TrimEnd().Split();
-            var outputGlobalMin = TestHelp.ParseDouble(outputGlobalData[0]);
-            var outputGlobalMax = TestHelp.ParseDouble(outputGlobalData[1]);
-            var outputGlobalAvg = TestHelp.ParseDouble(outputGlobalData[2]);
+            var outputGlobalMin = double.Parse(outputGlobalData[0], _culture);
+            var outputGlobalMax = double.Parse(outputGlobalData[1], _culture);
+            var outputGlobalAvg = double.Parse(outputGlobalData[2], _culture);
 
             if (outputGlobalMin != globalMin)
                 return (false, $"Wrong global min: Gave '{outputGlobalMin}' but should have been '{globalMin}'");
