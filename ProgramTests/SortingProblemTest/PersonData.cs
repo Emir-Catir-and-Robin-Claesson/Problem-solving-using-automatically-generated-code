@@ -56,18 +56,18 @@ namespace SortingProblemTest
 
 
 
-        private static string[] towns =  {  "Stockholm", "Järfälla", "Falköping", "Skövde", "Göteborg", "Umeå", "Luleå", "Lund", "Borås", "Örebro",
-                                            "Åsarp", "Trollhättan", "Jönköping", "Huskvarna", "Växsjö", "Sävsjö", "Karlskrona", "Karlshamn", "Karlsborg", "Halmstad",
-                                            "Uppsala", "Västerås", "Södertälje", "Norrköping", "Linköping", "Västervik", "Oskarshamn", "Kalmar", "Visby", "Borgholm",
-                                            "Ysta", "Trelleborg", "Malmö", "Helsingborg", "Värnamo", "Falkenberg", "Varberg", "Kungsbacka", "Kungälv", "Alingsås",
-                                            "Ulricehamn", "Vårgårda", "Vara", "Uddevalla", "Lysekil", "Motala", "Götene", "Skara", "Lidköping", "Karlstad",
-                                            "Åmål", "Karlskoga", "Filipstad", "Nora", "Köping", "Kopparberg", "Ludvika", "Avesta", "Leksand", "Mora",
-                                            "Falun", "Storvreta", "Gävle", "Eversberg", "Söderhamn", "Orsa", "Edsbyn", "Bollnäs", "Idre", "Sveg",
-                                            "Sundsvall", "Timrå", "Kramfors", "Östersund", "Sollefteå", "Örnsköldsvik", "Åre", "Robertsfors", "Lycksele", "Skellefteå",
-                                            "Piteå", "Arvidjaur", "Kalix", "Jokkmokk", "Gällivare", "Pajala", "Kiruna", "Malung", "Rättvik", "Säffle", 
-                                            "Nyköping", "Mjölby", "Vimmerby", "Vetlanda", "Nässjö", "Mölndal", "Havdhem", "Hemse", "Kristinehamn", "Norrtälje"};
+        private static string[] towns =  {  "Stockholm", "Jarfalla", "Falkoping", "Skovde", "Goteborg", "Umea", "Lulea", "Lund", "Boras", "Orebro",
+                                            "Asarp", "Trollhattan", "Jonkoping", "Huskvarna", "Vaxsjo", "Savsjo", "Karlskrona", "Karlshamn", "Karlsborg", "Halmstad",
+                                            "Uppsala", "Vasteras", "Sodertalje", "Norrkoping", "Linkoping", "Vastervik", "Oskarshamn", "Kalmar", "Visby", "Borgholm",
+                                            "Ysta", "Trelleborg", "Malmo", "Helsingborg", "Varnamo", "Falkenberg", "Varberg", "Kungsbacka", "Kungalv", "Alingsas",
+                                            "Ulricehamn", "Vargarda", "Vara", "Uddevalla", "Lysekil", "Motala", "Gotene", "Skara", "Lidkoping", "Karlstad",
+                                            "Amal", "Karlskoga", "Filipstad", "Nora", "Koping", "Kopparberg", "Ludvika", "Avesta", "Leksand", "Mora",
+                                            "Falun", "Storvreta", "Gavle", "Eversberg", "Soderhamn", "Orsa", "Edsbyn", "Bollnas", "Idre", "Sveg",
+                                            "Sundsvall", "Timra", "Kramfors", "Ostersund", "Solleftea", "Ornskoldsvik", "Are", "Robertsfors", "Lycksele", "Skelleftea",
+                                            "Pitea", "Arvidjaur", "Kalix", "Jokkmokk", "Gallivare", "Pajala", "Kiruna", "Malung", "Rattvik", "Saffle",
+                                            "Nykoping", "Mjolby", "Vimmerby", "Vetlanda", "Nassjo", "Molndal", "Havdhem", "Hemse", "Kristinehamn", "Norrtalje"};
 
-       
+
 
 
     }
