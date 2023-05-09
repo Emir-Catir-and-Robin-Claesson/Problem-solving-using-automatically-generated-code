@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemperatureProblemTest", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataViewer", "TestDataViewer\TestDataViewer.csproj", "{678A10F8-4CAC-4F9E-BF1C-374725E719F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingProblemTest", "SortingProblemTest\SortingProblemTest.csproj", "{8D361003-228B-4483-9673-3E7084DBECBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SortingProblemTest", "SortingProblemTest\SortingProblemTest.csproj", "{8D361003-228B-4483-9673-3E7084DBECBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandingOutTests", "HandingOutTests\HandingOutTests.csproj", "{4135FF61-B5D2-454B-8AED-8BBB677B3D18}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C31437CC-49C2-43CB-8889-064F4F678392} = {C31437CC-49C2-43CB-8889-064F4F678392}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +38,10 @@ Global
 		{8D361003-228B-4483-9673-3E7084DBECBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D361003-228B-4483-9673-3E7084DBECBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D361003-228B-4483-9673-3E7084DBECBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4135FF61-B5D2-454B-8AED-8BBB677B3D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4135FF61-B5D2-454B-8AED-8BBB677B3D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4135FF61-B5D2-454B-8AED-8BBB677B3D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4135FF61-B5D2-454B-8AED-8BBB677B3D18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
