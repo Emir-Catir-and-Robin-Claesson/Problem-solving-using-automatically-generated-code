@@ -20,7 +20,7 @@ namespace HandingOutTests
 
             var rnd = new Random();
 
-            var numOfPeople = rnd.Next(100, 300);
+            var numOfPeople = rnd.Next(10, 300);
 
             sb.AppendLine($"{numOfPeople}");
 
@@ -88,6 +88,9 @@ namespace HandingOutTests
                 
                 chosenPath.Add(fromStudent);
             }
+            //Check so that every student is visisted
+            if ((chosenPath.Count()) != numOfStudents)
+                return (false, $"Path does not include all students, path contains {chosenPath.Count()}, total number of students is: {numOfStudents}");
             //Check is distance is correctly calculated
             if (controlSum != suggestedShortestDistance)
                 return (false, $"Path is valid but distance is wrongfully calculated, control sum: {controlSum}, suggested: {suggestedShortestDistance}");
