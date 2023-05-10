@@ -20,15 +20,15 @@ namespace HandingOutTests
 
             var rnd = new Random();
 
-            var numOfPeople = rnd.Next(10, 300);
+            int numOfPeople = rnd.Next(4, 13);
 
             sb.AppendLine($"{numOfPeople}");
 
             for (int i = 1; i < numOfPeople; i++)
             {
-                for(int j = i+1; j < numOfPeople; j++)
+                for(int j = i+1; j <= numOfPeople; j++)
                 {
-                    var distance = rnd.Next(1, 25);
+                    var distance = rnd.Next(1, 10);
                     sb.AppendLine($"{i} {j} {distance}");
                 }
             }
@@ -46,47 +46,39 @@ namespace HandingOutTests
             var numOfStudents = int.Parse(inputRows[0]);
             int[,] studentsAdjMatrix = new int[numOfStudents+1, numOfStudents+1];
 
-            for (int i = 1; i <= numOfStudents; i++)
+            for (int i = 1; i < inputRows.Length; i++)
             {
-                for(int j = i; j <= numOfStudents; j++)
-                {
-                    if(i == j)
-                    {
-                        studentsAdjMatrix[i, j] = 0;
-                        studentsAdjMatrix[j, i] = 0;
-                    }
-                    else
-                    {
-                        var student1 = (inputRows[i]);
-                        var student2 = (inputRows[i + 1]);
-                        int distance = int.Parse(inputRows[i + 2]);
-
-                        studentsAdjMatrix[i, j] = distance;
-                        studentsAdjMatrix[j, i] = distance;
-                    }
-                }
+                var splitRow = (inputRows[i].Split());
+                int student1 = int.Parse(splitRow[0]);
+                var student2 = int.Parse(splitRow[1]);
+                int distance = int.Parse(splitRow[2]);
+                
+                studentsAdjMatrix[student1, student2] = distance;
+                studentsAdjMatrix[student2, student1] = distance;        
             }
 
             var suggestedShortestDistance = int.Parse(outputRows[0]);
+            var suggestedPath = outputRows[1].Split();
             int controlSum = 0;
             List<int> chosenPath = new List<int>();
-            for(int i = 1; i < outputRows.Length; i++)
+            chosenPath.Add(1);
+            for(int i = 0; i < suggestedPath.Length-1; i++)
             {
                 //Check if suggested path is valid
-                var fromStudent = int.Parse(outputRows[i]);
+                var fromStudent = int.Parse(suggestedPath[i]);
                 if(fromStudent == 0 || fromStudent > numOfStudents)
                     return (false, $"Path invovles non existing student {fromStudent}: Student numbers from 1 to {numOfStudents} are available but chose '{fromStudent}");
-                var toStudent = int.Parse(outputRows[i+1]);
+                var toStudent = int.Parse(suggestedPath[i+1]);
                 if(toStudent == 0 || toStudent > numOfStudents)
                     return (false, $"Path invovles non existing student {toStudent}: Student numbers from 1 to {numOfStudents} are available but chose '{toStudent}");
 
                 controlSum += studentsAdjMatrix[fromStudent, toStudent];
                 
                 //Check that path do not pass a student twice
-                if(chosenPath.Contains(fromStudent))
-                    return (false, $"Path pases student {fromStudent} twice");
+                if(chosenPath.Contains(toStudent))
+                    return (false, $"Path pases student {toStudent} twice");
                 
-                chosenPath.Add(fromStudent);
+                chosenPath.Add(toStudent);
             }
             //Check so that every student is visisted
             if ((chosenPath.Count()) != numOfStudents)
