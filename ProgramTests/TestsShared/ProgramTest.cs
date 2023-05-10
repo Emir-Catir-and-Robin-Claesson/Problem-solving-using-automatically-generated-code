@@ -9,7 +9,7 @@ namespace TestsShared
     public abstract class ProgramTest
     {
         private TestInfo _testInfo;
-        
+
         protected ProgramTest(TestInfo testInfo)
         {
             _testInfo = testInfo;
@@ -36,12 +36,12 @@ namespace TestsShared
         /// </summary>
         /// <returns>The results of the tests</returns>
         public TestResult RunTest()
-        { 
+        {
             var testResult = new TestResult();
 
-            for (int i = 0;  i < _testInfo.NumOfRounds; i++)
+            for (int i = 0; i < _testInfo.NumOfRounds; i++)
             {
-                Console.Write($"\rRunning test... {i+1}/{_testInfo.NumOfRounds}");
+                Console.Write($"\rRunning test... {i + 1}/{_testInfo.NumOfRounds}");
 
                 var testInput = GenerateInput();
 
@@ -51,28 +51,46 @@ namespace TestsShared
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.RedirectStandardInput = true;
                 process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
                 process.Start();
 
                 process.StandardInput.WriteLine(testInput);
                 var testOutput = process.StandardOutput.ReadToEnd();
+                var testError = process.StandardError.ReadToEnd();
                 process.WaitForExit();
 
-                var verification = VerifyOutput(testInput,testOutput);
+                if (testError != "")
+                {
+                    var testErrorLog = new TestLog
+                    {
+                        Input = testInput,
+                        Output = testOutput,
+                        CorrectOutput = false,
+                        FailMessage = $"Error during runtime: '{testError}'"
+                    };
 
-                var testLog = new TestLog {
-                    Input = testInput,
-                    Output = testOutput,
-                    CorrectOutput = verification.isCorrect,
-                    FailMessage = verification.failMessage
-                };
-
-                if (verification.isCorrect)
-                    testResult.SucceededTests.Add(testLog);
+                    testResult.FailedTests.Add(testErrorLog);
+                }
                 else
-                    testResult.FailedTests.Add(testLog);
+                {
+                    var verification = VerifyOutput(testInput, testOutput);
+
+                    var testLog = new TestLog
+                    {
+                        Input = testInput,
+                        Output = testOutput,
+                        CorrectOutput = verification.isCorrect,
+                        FailMessage = verification.failMessage
+                    };
+
+                    if (verification.isCorrect)
+                        testResult.SucceededTests.Add(testLog);
+                    else
+                        testResult.FailedTests.Add(testLog);
+                }
             }
             Console.WriteLine("\r\nTest Complete");
-            
+
             var jsonString = JsonSerializer.Serialize(testResult);
 
             var writer = new StreamWriter("Test_Result.json", false);
