@@ -72,8 +72,14 @@ namespace HandingOutTests
                 if(toStudent == 0 || toStudent > numOfStudents)
                     return (false, $"Path invovles non existing student {toStudent}: Student numbers from 1 to {numOfStudents} are available but chose '{toStudent}");
 
+
+                //Some ACG adds the last student while other don't to make a more fair evaluation this is corrected for.
+                //If last student happen to be 1, ignore this.
+                if (toStudent == 1 && (i + 1) == (suggestedPath.Length - 1))
+                    break;
+
                 controlSum += studentsAdjMatrix[fromStudent, toStudent];
-                
+
                 //Check that path do not pass a student twice
                 if(chosenPath.Contains(toStudent))
                     return (false, $"Path pases student {toStudent} twice");
