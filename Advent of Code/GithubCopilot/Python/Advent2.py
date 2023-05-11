@@ -34,3 +34,7 @@ def findCombinations(containers, target):
         # Add current container to all combinations
         combinations.extend(list(map(lambda x: [containers[i]] + x, subCombinations)))
     return combinations
+
+
+if __name__ == "__main__":
+    main()

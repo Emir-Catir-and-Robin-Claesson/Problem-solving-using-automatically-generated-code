@@ -31,7 +31,7 @@ namespace AdventOfCodeTest
 
         protected override (bool isCorrect, string failMessage) VerifyOutput(string testInput, string testOutput)
         {
-            var containers = testInput.Split(Environment.NewLine).Skip(1).Select(x => int.Parse(x)).ToList();
+            var containers = testInput.TrimEnd().Split(Environment.NewLine).Skip(1).Select(x => int.Parse(x)).ToList();
             var combinations = GetCombinations(containers);
             var answer = combinations.Count(x => x.Sum() == 150);
 
@@ -39,11 +39,11 @@ namespace AdventOfCodeTest
 
             if (testAnswer == answer)
             {
-                return (false, $"Wrong answer: Gave '{testAnswer}' but should have been '{answer}'");
+                return (true, "");
             }
             else
             {
-                return (true, "");
+                return (false, $"Wrong answer: Gave '{testAnswer}' but should have been '{answer}'");
             }
         }
 
