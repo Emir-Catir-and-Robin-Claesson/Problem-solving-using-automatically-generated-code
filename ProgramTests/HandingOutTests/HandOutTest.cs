@@ -76,7 +76,10 @@ namespace HandingOutTests
                 //Some ACG adds the last student while other don't to make a more fair evaluation this is corrected for.
                 //If last student happen to be 1, ignore this.
                 if (toStudent == 1 && (i + 1) == (suggestedPath.Length - 1))
+                {
+                    suggestedShortestDistance -= studentsAdjMatrix[fromStudent, toStudent];
                     break;
+                }
 
                 controlSum += studentsAdjMatrix[fromStudent, toStudent];
 
