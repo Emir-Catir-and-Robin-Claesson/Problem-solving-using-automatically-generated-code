@@ -22,7 +22,7 @@ namespace TestDataViewer
             this.Close();
         }
 
-        private void OpenFile(object sender, EventArgs e)
+        private void button_File_Click(object sender, EventArgs e)
         {
             if (openDataFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -32,7 +32,7 @@ namespace TestDataViewer
                     {
                         TestResult = (TestResult)JsonSerializer.Deserialize(File.ReadAllText(openDataFileDialog.FileName), typeof(TestResult));
                         treeViewTestResult.Nodes.Clear();
-                        treeViewTestResult.Nodes.Add(TestResultToTreeNodes(TestResult));
+                        treeViewTestResult.Nodes.Add(TestResultToTreeNodes(TestResult, "Test Result"));
                         treeViewTestResult.Nodes[0].Expand();
 
                         textBox_FilePath.Text = openDataFileDialog.FileName;
@@ -46,9 +46,37 @@ namespace TestDataViewer
             }
         }
 
-        private TreeNode TestResultToTreeNodes(TestResult testResult)
+        private void button_Folder_Click(object sender, EventArgs e)
         {
-            var root = new TreeNode("Test Result");
+            if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                if(Directory.Exists(folderBrowserDialog.SelectedPath))
+                {
+                    Cursor.Current = Cursors.WaitCursor; 
+                    string[] allTestResults = Directory.GetFiles(folderBrowserDialog.SelectedPath, "*.json", SearchOption.AllDirectories);
+
+                    treeViewTestResult.Nodes.Clear();
+                    
+                    foreach(string filePath in allTestResults)
+                    {
+                        try
+                        {
+                            TestResult = (TestResult)JsonSerializer.Deserialize(File.ReadAllText(filePath), typeof(TestResult));
+                            treeViewTestResult.Nodes.Add(TestResultToTreeNodes(TestResult, filePath.Replace(folderBrowserDialog.SelectedPath, "")));
+                        }
+                        catch { }
+                    }
+
+                    treeViewTestResult.Nodes[0].Expand();
+                }
+            }
+
+            Cursor.Current = Cursors.Default;
+        }
+
+        private TreeNode TestResultToTreeNodes(TestResult testResult, string rootName)
+        {
+            var root = new TreeNode(rootName);
 
             root.Nodes.Add(TestLogsToTreeNodes(testResult.SucceededTests, "Succeeded"));
             root.Nodes.Add(TestLogsToTreeNodes(testResult.FailedTests, "Failed"));
@@ -96,5 +124,7 @@ namespace TestDataViewer
         {
 
         }
+
+
     }
 }
