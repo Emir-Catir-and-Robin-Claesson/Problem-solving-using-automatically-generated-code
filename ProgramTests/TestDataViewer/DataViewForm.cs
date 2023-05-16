@@ -85,7 +85,7 @@ namespace TestDataViewer
 
         private TreeNode TestLogsToTreeNodes(List<TestLog> testLogs, string testPrefix)
         {
-            var root = new TreeNode($"{testPrefix} Tests");
+            var root = new TreeNode($"{testPrefix} Tests: {testLogs.Count}");
             for (int i = 0; i < testLogs.Count; i++)
             {
                 var testNode = new TreeNode($"{testPrefix} Test #{i + 1}");
