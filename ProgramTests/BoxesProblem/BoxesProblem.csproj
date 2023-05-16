@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DD2350 Algoritmer, datastrukturer och komplexitet\Problem-solving-using-automatically-generated-code\ProgramTests\TestsShared\TestsShared.csproj" />
+    <ProjectReference Include="..\TestsShared\TestsShared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,7 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandingOutTests", "HandingO
 		{C31437CC-49C2-43CB-8889-064F4F678392} = {C31437CC-49C2-43CB-8889-064F4F678392}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCodeTest", "AdventOfCodeTest\AdventOfCodeTest.csproj", "{DCA39EB5-DE89-4F4A-958C-6A9A1B8EE0FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCodeTest", "AdventOfCodeTest\AdventOfCodeTest.csproj", "{DCA39EB5-DE89-4F4A-958C-6A9A1B8EE0FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoxesProblem", "BoxesProblem\BoxesProblem.csproj", "{1DC692C9-7BFE-4060-A470-809151757BF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 		{DCA39EB5-DE89-4F4A-958C-6A9A1B8EE0FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA39EB5-DE89-4F4A-958C-6A9A1B8EE0FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA39EB5-DE89-4F4A-958C-6A9A1B8EE0FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC692C9-7BFE-4060-A470-809151757BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC692C9-7BFE-4060-A470-809151757BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC692C9-7BFE-4060-A470-809151757BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC692C9-7BFE-4060-A470-809151757BF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
