@@ -48,16 +48,16 @@ namespace TestDataViewer
 
         private void button_Folder_Click(object sender, EventArgs e)
         {
-            if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                if(Directory.Exists(folderBrowserDialog.SelectedPath))
+                if (Directory.Exists(folderBrowserDialog.SelectedPath))
                 {
-                    Cursor.Current = Cursors.WaitCursor; 
-                    string[] allTestResults = Directory.GetFiles(folderBrowserDialog.SelectedPath, "*.json", SearchOption.AllDirectories);
+                    Cursor.Current = Cursors.WaitCursor;
+                    string[] allTestResults = Directory.GetFiles(folderBrowserDialog.SelectedPath, "*_Result.json", SearchOption.AllDirectories);
 
                     treeViewTestResult.Nodes.Clear();
-                    
-                    foreach(string filePath in allTestResults)
+
+                    foreach (string filePath in allTestResults)
                     {
                         try
                         {
@@ -67,7 +67,6 @@ namespace TestDataViewer
                         catch { }
                     }
 
-                    treeViewTestResult.Nodes[0].Expand();
                 }
             }
 
@@ -118,13 +117,29 @@ namespace TestDataViewer
             label_Percentage.Text = $"Success rate: {Math.Round((double)TestResult.SucceededTests.Count / numOfTotalTests * 100, 2)}%";
 
         }
-
-
-        private void button_Filter_Click(object sender, EventArgs e)
+        private void UpdateResultInformation(TreeNode testRoot)
         {
+            int numOfTotalTests = testRoot.Nodes[0].Nodes.Count + testRoot.Nodes[1].Nodes.Count;
+            label_Total.Text = $"Total: {numOfTotalTests}";
+            label_Correct.Text = $"Succeeded: {testRoot.Nodes[0].Nodes.Count}";
+            label_Incorrect.Text = $"Failed: {testRoot.Nodes[1].Nodes.Count}";
+            label_Percentage.Text = $"Success rate: {Math.Round((double)testRoot.Nodes[0].Nodes.Count / numOfTotalTests * 100, 2)}%";
 
         }
 
+        private void treeViewTestResult_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Text.Contains(".json"))
+            {
+                UpdateResultInformation(e.Node);
+                textBox_FilePath.Text = e.Node.Text;
+            }
+        }
 
+        private void DataViewForm_Resize(object sender, EventArgs e)
+        {
+            treeViewTestResult.Width = panel_Controls.Left;
+            treeViewTestResult.Height = textBox_FilePath.Top;
+        }
     }
 }

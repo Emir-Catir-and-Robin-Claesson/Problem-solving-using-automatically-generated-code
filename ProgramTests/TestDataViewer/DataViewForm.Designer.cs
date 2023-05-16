@@ -50,12 +50,12 @@
             // 
             // treeViewTestResult
             // 
-            treeViewTestResult.Dock = DockStyle.Fill;
             treeViewTestResult.Location = new Point(0, 0);
             treeViewTestResult.Margin = new Padding(3, 2, 3, 2);
             treeViewTestResult.Name = "treeViewTestResult";
-            treeViewTestResult.Size = new Size(963, 573);
+            treeViewTestResult.Size = new Size(769, 545);
             treeViewTestResult.TabIndex = 1;
+            treeViewTestResult.AfterSelect += treeViewTestResult_AfterSelect;
             // 
             // panel_Controls
             // 
@@ -161,6 +161,7 @@
             Name = "DataViewForm";
             Text = "Test Data Viewer";
             Load += DataViewForm_Load;
+            Resize += DataViewForm_Resize;
             panel_Controls.ResumeLayout(false);
             panel_Controls.PerformLayout();
             ResumeLayout(false);
