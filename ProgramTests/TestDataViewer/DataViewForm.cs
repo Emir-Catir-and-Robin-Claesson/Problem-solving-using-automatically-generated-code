@@ -22,7 +22,7 @@ namespace TestDataViewer
             this.Close();
         }
 
-        private void loadTestDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenFile(object sender, EventArgs e)
         {
             if (openDataFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -33,6 +33,10 @@ namespace TestDataViewer
                         TestResult = (TestResult)JsonSerializer.Deserialize(File.ReadAllText(openDataFileDialog.FileName), typeof(TestResult));
                         treeViewTestResult.Nodes.Clear();
                         treeViewTestResult.Nodes.Add(TestResultToTreeNodes(TestResult));
+                        treeViewTestResult.Nodes[0].Expand();
+
+                        textBox_FilePath.Text = openDataFileDialog.FileName;
+                        UpdateResultInformation();
                     }
                     catch
                     {
@@ -75,6 +79,23 @@ namespace TestDataViewer
             }
 
             return root;
+        }
+
+        private void UpdateResultInformation()
+        {
+            int numOfTotalTests = TestResult.SucceededTests.Count + TestResult.FailedTests.Count;
+            label_Total.Text = $"Total: {numOfTotalTests}";
+            label_Correct.Text = $"Succeeded: {TestResult.SucceededTests.Count}";
+            label_Incorrect.Text = $"Failed: {TestResult.FailedTests.Count}";
+            label_Percentage.Text = $"Success rate: {Math.Round((double)TestResult.SucceededTests.Count / numOfTotalTests * 100, 2)}%";
+
+            comboBox_Order.SelectedIndex = 0;
+        }
+
+
+        private void button_Filter_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

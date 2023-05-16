@@ -11,6 +11,13 @@ namespace TestsShared
     /// </summary>
     public record TestResult
     {
+
+        public TestResult(TestResult other)
+        {
+            SucceededTests = new List<TestLog>(other.SucceededTests);
+            FailedTests = new List<TestLog>(other.FailedTests);
+        }
+
         /// <summary>
         /// Logs for all rounds that was succesfull (correct output)
         /// </summary>
