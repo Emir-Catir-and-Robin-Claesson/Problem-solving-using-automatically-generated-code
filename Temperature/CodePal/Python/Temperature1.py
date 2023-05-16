@@ -33,3 +33,9 @@ def process_temperatures():
         print(f"{min_temp_all:.1f} {max_temp_all:.1f} {avg_temp_all:.1f}")
     except ValueError as e:
         print(f"Error: {e}")
+
+def main():
+    process_temperatures()
+
+if __name__ == "__main__":
+    main()

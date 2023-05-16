@@ -6,8 +6,8 @@
 typedef struct {
     char name[50];
     int age;
-    float weight;
-    float height;
+    int weight;
+    int height;
     char hometown[50];
 } Person;
 
@@ -58,7 +58,7 @@ int main() {
 
     // Read the data for each person from standard input
     for (i = 0; i < n; i++) {
-        scanf("%s %d %f %f %s", people[i].name, &people[i].age, &people[i].weight, &people[i].height, people[i].hometown);
+        scanf("%s %d %d %d %s", people[i].name, &people[i].age, &people[i].weight, &people[i].height, people[i].hometown);
     }
 
     // Sort the array of people using the compare_persons function
@@ -66,7 +66,7 @@ int main() {
 
     // Print the sorted list of people to standard output
     for (i = 0; i < n; i++) {
-        printf("%s %d %.1f %.1f %s\n", people[i].name, people[i].age, people[i].weight, people[i].height, people[i].hometown);
+        printf("%s %d %d %d %s\n", people[i].name, people[i].age, people[i].weight, people[i].height, people[i].hometown);
     }
 
     // Free the memory allocated for the array of people

@@ -26,3 +26,22 @@ def sort_people(people: List[str]) -> List[str]:
         # Log the error
         print(f"Error: {e}")
         return []
+    
+def main():
+    # Get the number of people
+    n = int(input())
+    
+    # Get the list of people
+    people = []
+    for _ in range(n):
+        people.append(input())
+    
+    # Sort the people
+    sorted_people = sort_people(people)
+    
+    # Print the sorted list of people
+    for person in sorted_people:
+        print(person)
+
+if __name__ == "__main__":
+    main()
