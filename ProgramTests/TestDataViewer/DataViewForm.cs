@@ -75,7 +75,7 @@ namespace TestDataViewer
 
         private TreeNode TestResultToTreeNodes(TestResult testResult, string rootName)
         {
-            var root = new TreeNode(rootName);
+            var root = new TreeNode($"{rootName} ({testResult.SucceededTests.Count}/{testResult.FailedTests.Count + testResult.SucceededTests.Count})");
 
             root.Nodes.Add(TestLogsToTreeNodes(testResult.SucceededTests, "Succeeded"));
             root.Nodes.Add(TestLogsToTreeNodes(testResult.FailedTests, "Failed"));
