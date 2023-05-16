@@ -89,7 +89,6 @@ namespace TestDataViewer
             label_Incorrect.Text = $"Failed: {TestResult.FailedTests.Count}";
             label_Percentage.Text = $"Success rate: {Math.Round((double)TestResult.SucceededTests.Count / numOfTotalTests * 100, 2)}%";
 
-            comboBox_Order.SelectedIndex = 0;
         }
 
 
