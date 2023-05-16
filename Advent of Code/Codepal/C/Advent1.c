@@ -25,9 +25,8 @@ int main() {
     for (int i = 0; i < n; i++) {
         scanf("%d", &containers[i]);
     }
-    scanf("%d", &eggnog);
-    // Call the recursive function to count the number of ways
-    int ways = count_ways(eggnog, containers, n);
+    // Call the recursive function to count th e number of ways
+    int ways = count_ways(150, containers, n);
     // Print the result
     printf("%d\n", ways);
     return 0;

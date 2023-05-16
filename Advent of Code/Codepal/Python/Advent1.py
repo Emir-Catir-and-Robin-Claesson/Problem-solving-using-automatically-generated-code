@@ -37,3 +37,15 @@ def count_combinations(num_containers, capacities):
         # Log the error
         print(f"Error: {e}")
         return 0
+
+def main(): 
+    num_containers = int(input())
+    capacities = []
+    for i in range(num_containers):
+        capacities.append(int(input()))
+
+    print(count_combinations(num_containers, capacities))
+
+if __name__ == "__main__":
+    main()
+    
