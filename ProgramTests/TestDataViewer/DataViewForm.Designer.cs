@@ -40,6 +40,7 @@
             label_Result = new Label();
             textBox_FilePath = new TextBox();
             folderBrowserDialog = new FolderBrowserDialog();
+            button_VerifyTemperature = new Button();
             panel_Controls.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,6 +60,7 @@
             // 
             // panel_Controls
             // 
+            panel_Controls.Controls.Add(button_VerifyTemperature);
             panel_Controls.Controls.Add(button_Folder);
             panel_Controls.Controls.Add(button_File);
             panel_Controls.Controls.Add(label_Percentage);
@@ -149,6 +151,17 @@
             textBox_FilePath.Size = new Size(769, 23);
             textBox_FilePath.TabIndex = 8;
             // 
+            // button_VerifyTemperature
+            // 
+            button_VerifyTemperature.Dock = DockStyle.Bottom;
+            button_VerifyTemperature.Location = new Point(0, 550);
+            button_VerifyTemperature.Name = "button_VerifyTemperature";
+            button_VerifyTemperature.Size = new Size(194, 23);
+            button_VerifyTemperature.TabIndex = 10;
+            button_VerifyTemperature.Text = "Verify Temperature result";
+            button_VerifyTemperature.UseVisualStyleBackColor = true;
+            button_VerifyTemperature.Click += button_VerifyTemperature_Click;
+            // 
             // DataViewForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -181,5 +194,6 @@
         private Button button_File;
         private Button button_Folder;
         private FolderBrowserDialog folderBrowserDialog;
+        private Button button_VerifyTemperature;
     }
 }
