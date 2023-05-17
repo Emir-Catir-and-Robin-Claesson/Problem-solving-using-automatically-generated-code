@@ -1,0 +1,2 @@
+Github Copilot is at the time of writing not able to generate a complete Java proram for this problem.
+This is still true if it is allowed to try to generate at the end of a uncomplete accepted answer. 

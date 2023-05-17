@@ -7,39 +7,64 @@ public class Electrical {
     //The output data should be printed to standard output in the following format. A row for each of the branch sockets used to build the network that powers the lamps. Each row should print the length of the cord, the number of sockets it has, the number of the music stand where the cord is plugged in, and the number of the music stand it lies beneath, all separated by spaces. The wall outlet is considered as music stand 0.
     public static void main(String[] args){
 
+        
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[][] cords = new int[n][n];
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                cords[i][j] = sc.nextInt();
+        int N = sc.nextInt();
+        int[][] arr = new int[N][N];
+        int[] cords = new int[N];
+        int[] sockets = new int[N];
+        int[] from = new int[N];
+        int[] to = new int[N];
+        int[] length = new int[N];
+        for(int i = 0; i < N; i++){
+            sockets[i] = 1;
+            for(int j = 0; j < N; j++){
+                arr[i][j] = sc.nextInt();
             }
         }
-        sc.close();
-        int[] distances = new int[n];
-        boolean[] used = new boolean[n];
-        Arrays.fill(distances, Integer.MAX_VALUE);
-        distances[0] = 0;
-        int[] parent = new int[n];
-        Arrays.fill(parent, -1);
-        for(int i = 0; i < n - 1; i++){
-            int u = -1;
-            for(int j = 0; j < n; j++){
-                if(!used[j] && (u == -1 || distances[j] < distances[u])){
-                    u = j;
+        int min = 0;
+        int minIndex = 0;
+        int minIndex2 = 0;
+        int minIndex3 = 0;
+        int temp = 0;
+        int temp2 = 0;
+        int temp3 = 0;
+        for(int i = 0; i < N; i++){
+            min = 9999999;
+            minIndex = 0;
+            minIndex2 = 0;
+            minIndex3 = 0;
+            for(int j = 0; j < N; j++){
+                if(arr[i][j] < min){
+                    min = arr[i][j];
+                    minIndex = j;
                 }
             }
-            used[u] = true;
-            for(int v = 0; v < n; v++){
-                if(!used[v] && cords[u][v] < distances[v]){
-                    distances[v] = cords[u][v];
-                    parent[v] = u;
+            for(int j = 0; j < N; j++){
+                if(arr[i][j] < min && arr[i][j] > 0){
+                    min = arr[i][j];
+                    minIndex2 = j;
                 }
             }
-        }
-        for(int i = 1; i < n; i++){
-            System.out.println(distances[i] + " 2 " + parent[i] + " " + i);
-        }
+            for(int j = 0; j < N; j++){
+                if(arr[i][j] < min && arr[i][j] > 0 && arr[i][j] != arr[i][minIndex]){
+                    min = arr[i][j];
+                    minIndex3 = j;
+                }
+            }
+            if(minIndex3 != 0){
+                if(arr[i][minIndex3] + arr[minIndex3][minIndex2] < arr[i][minIndex2] + arr[minIndex2][minIndex]){
+                    temp = minIndex;
+                    minIndex = minIndex3;
+                    minIndex3 = temp;
+                }
+            }
+            if(minIndex3 != 0){
+                if(arr[i][minIndex3] + arr[minIndex3][minIndex2] < arr[i][minIndex2] + arr[minIndex2][minIndex]){
+                    temp = minIndex;
+                    minIndex = minIndex3;
+                    minIndex3 = temp;
+                }
 
     }
 }
