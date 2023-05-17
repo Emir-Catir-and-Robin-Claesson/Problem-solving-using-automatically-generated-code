@@ -1,5 +1,6 @@
 using TestsShared;
 using System.Text.Json;
+using System.Globalization;
 
 namespace TestDataViewer
 {
@@ -140,6 +141,59 @@ namespace TestDataViewer
         {
             treeViewTestResult.Width = panel_Controls.Left;
             treeViewTestResult.Height = textBox_FilePath.Top;
+        }
+
+        private void button_VerifyTemperature_Click(object sender, EventArgs e)
+        {
+            var reportedCorrect = TestResult.SucceededTests.Count;
+            var reportedIncorrect = TestResult.FailedTests.Count;
+
+            var incorrectBecauseOfRounding = 0;
+            foreach (var test in TestResult.FailedTests)
+            {
+                var reported = 0.0;
+                var actual = 0.0;
+
+                var splitError = test.FailMessage.Split('\'');
+
+                try
+                {
+
+                    if (test.FailMessage.Contains("week"))
+                    {
+                        reported = double.Parse($"{splitError[3]}");
+                        actual = double.Parse($"{splitError[5]}");
+                    }
+                    else
+                    {
+                        reported = double.Parse($"{splitError[1]}");
+                        actual = double.Parse($"{splitError[3]}");
+                    }
+                }
+                catch
+                {
+                    var culture = new CultureInfo("en-us");
+                    if (test.FailMessage.Contains("week"))
+                    {
+                        reported = double.Parse($"{splitError[3]}", culture);
+                        actual = double.Parse($"{splitError[5]}", culture);
+                    }
+                    else
+                    {
+                        reported = double.Parse($"{splitError[1]}", culture);
+                        actual = double.Parse($"{splitError[3]}", culture);
+                    }
+                }
+
+                if (Math.Abs(reported - actual) <= 0.15)
+                {
+                    incorrectBecauseOfRounding++;
+                }
+            }
+
+            var message = $"Reported correct: {reportedCorrect}\r\nReported incorrect: {reportedIncorrect}\r\nVerified correct: {reportedCorrect + incorrectBecauseOfRounding}\r\nVerified incorrect: {reportedIncorrect - incorrectBecauseOfRounding}";
+            MessageBox.Show(message, "Verification complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }
