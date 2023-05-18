@@ -96,27 +96,12 @@ namespace TemperatureProblemTest
 
                 if (outputMin != localMin)
                 {
-                    if (Math.Abs(outputMin - localMin) < 0.2m)
-                    {
-                        roundingErrors.AppendLine($"Wrong local min on week '{i + 1}': Gave '{outputMin}' but should have been '{localMin}' | ");
-                    }
-                    else
-                    {
-                        return (false, $"Wrong local min on week '{i + 1}': Gave '{outputMin}' but should have been '{localMin}'");
-                    }
+                    return (false, $"Wrong local min on week '{i + 1}': Gave '{outputMin}' but should have been '{localMin}'");
                 }
 
                 if (outputMax != localMax)
                 {
-                    if (Math.Abs(outputMax - localMax) < 0.2m)
-                    {
-                        roundingErrors.AppendLine($"Wrong local max on week '{i + 1}': Gave '{outputMax}' but should have been '{localMax}' | ");
-                    }
-                    else
-                    {
-                        return (false, $"Wrong local max on week '{i + 1}': Gave '{outputMax}' but should have been '{localMax}'");
-                    }
-
+                    return (false, $"Wrong local max on week '{i + 1}': Gave '{outputMax}' but should have been '{localMax}'");
                 }
 
                 if (outputAvg != localAvg)
@@ -128,7 +113,6 @@ namespace TemperatureProblemTest
                     else
                     {
                         return (false, $"Wrong local avg on week '{i + 1}': Gave '{outputAvg}' but should have been '{localAvg}'");
-
                     }
                 }
             }
@@ -143,25 +127,11 @@ namespace TemperatureProblemTest
 
             if (outputGlobalMin != globalMin)
             {
-                if (Math.Abs(outputGlobalMin - globalMin) < 0.2m)
-                {
-                    roundingErrors.AppendLine($"Wrong global min: Gave '{outputGlobalMin}' but should have been '{globalMin}' | ");
-                }
-                else
-                {
-                    return (false, $"Wrong global min: Gave '{outputGlobalMin}' but should have been '{globalMin}'");
-                }
+                return (false, $"Wrong global min: Gave '{outputGlobalMin}' but should have been '{globalMin}'");
             }
             if (outputGlobalMax != globalMax)
             {
-                if (Math.Abs(outputGlobalMax - globalMax) < 0.2m)
-                {
-                    roundingErrors.AppendLine($"Wrong global max: Gave '{outputGlobalMax}' but should have been '{globalMax}' | ");
-                }
-                else
-                {
-                    return (false, $"Wrong global max: Gave '{outputGlobalMax}' but should have been '{globalMax}'");
-                }
+                return (false, $"Wrong global max: Gave '{outputGlobalMax}' but should have been '{globalMax}'");
             }
             if (outputGlobalAvg != globalAvg)
             {

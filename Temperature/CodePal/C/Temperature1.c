@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <stdlib.h>
+ 
 /*
 This function takes temperature measurements in one and the same place over a number of weeks. The measurements are taken a fixed number of times, the same number of measurements in each week. At the end of the measurement period, the collected data must be processed: for each week, the smallest, the largest and the average temperature is determined. The minimum, maximum and average temperature must also be determined for the entire measurement period. All measurements are decimal numbers with 1 point precision.
 
@@ -11,7 +12,7 @@ measurements (float[][]): A 2D array of temperature measurements, with each row 
 Returns:
 void: The function prints the smallest, largest, and average temperature for each week, as well as the minimum, maximum, and average temperature for the entire measurement period to standard output
 */
-void process_temperatures(int num_weeks, int num_measurements, float measurements[num_weeks][num_measurements])
+void process_temperatures(int num_weeks, int num_measurements, float **measurements)
 {
     float min_temp = measurements[0][0];
     float max_temp = measurements[0][0];
@@ -79,15 +80,15 @@ int main(int argc, char const *argv[])
     scanf("%d %d", &num_weeks, &num_measurements);
 
     // Allocate memory for the measurements
-    int **measurements = (int **)malloc(num_weeks * sizeof(int *));
+    float **measurements = (float **)malloc(num_weeks * sizeof(float *));
     for (int i = 0; i < num_weeks; i++) {
-        measurements[i] = (int *)malloc(num_measurements * sizeof(int));
+        measurements[i] = (float *)malloc(num_measurements * sizeof(float));
     }
 
     // Read the measurements
     for (int i = 0; i < num_weeks; i++) {
         for (int j = 0; j < num_measurements; j++) {
-            scanf("%d", &measurements[i][j]);
+            scanf("%f", &measurements[i][j]);
         }
     }
 
