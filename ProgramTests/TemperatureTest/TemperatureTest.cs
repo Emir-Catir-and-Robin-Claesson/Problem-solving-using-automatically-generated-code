@@ -65,21 +65,11 @@ namespace TemperatureProblemTest
 
             for (int i = 0; i < numOfWeeks; i++)
             {
-                var temps = inputRows[1 + i].TrimEnd().Split(' ').Select(m => decimal.Parse(m, _culture)).ToList();
+                var input_temps = inputRows[1 + i].TrimEnd().Split(' ').Select(m => decimal.Parse(m, _culture)).ToList();
 
-                var localMin = decimal.MaxValue;
-                var localMax = decimal.MinValue;
-                var localTotal = 0.0m;
-
-                for (int j = 0; j < numOfMeasurements; j++)
-                {
-                    if (temps[j] < localMin)
-                        localMin = temps[j];
-                    if (temps[j] > localMax)
-                        localMax = temps[j];
-                    localTotal += temps[j];
-                }
-
+                var localMin = input_temps.Min();
+                var localMax = input_temps.Max();
+                var localTotal = input_temps.Sum();
 
                 if (localMax > globalMax)
                     globalMax = localMax;
