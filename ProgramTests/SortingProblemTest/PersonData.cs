@@ -28,6 +28,7 @@ namespace SortingProblemTest
 
         public PersonData(string inputData)
         {
+            //Console.WriteLine($"DEBUG: {inputData}");
             var data = inputData.TrimEnd().Split(' ');
 
             Name = data[0];

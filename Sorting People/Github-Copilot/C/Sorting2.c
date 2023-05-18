@@ -9,9 +9,9 @@
 
 int main() {
     int i, j, k, n, temp, count = 0, min;
-    char names[100][100], tempname[100];
-    int ages[100], weights[100], heights[100];
-    char towns[100][100], temptown[100];
+    char names[300][300], tempname[300];
+    int ages[300], weights[300], heights[300];
+    char towns[300][300], temptown[300];
     scanf("%d", &n);
     for(i = 0; i < n; i++) {
         scanf("%s %d %d %d %s", names[i], &ages[i], &weights[i], &heights[i], towns[i]);

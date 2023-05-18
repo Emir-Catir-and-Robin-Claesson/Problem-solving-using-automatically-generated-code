@@ -16,6 +16,7 @@ namespace SortingProblemTest
 
         protected override string GenerateInput()
         {
+
             StringBuilder sb = new StringBuilder();
 
             var rnd = new Random();
@@ -51,10 +52,23 @@ namespace SortingProblemTest
                                        ThenBy(x => x.Name).ToList();
 
             var outputPeople = new List<PersonData>();
-            for (int i = 0; i < numOfPeople; i++)
+            try
             {
-                outputPeople.Add(new PersonData(outputRows[i]));
+
+                for (int i = 0; i < numOfPeople; i++)
+                {
+                    outputPeople.Add(new PersonData(outputRows[i]));
+                }
             }
+            catch
+            {
+                return (false, "Output not fomated correctly");
+            }
+
+            if(outputPeople.Count != sortedPeople.Count)
+            {
+                return (false, $"Wrong ammount of people: Output contains {outputPeople.Count} people but should have been {sortedPeople.Count}");
+            }    
 
             for (int i = 0; i < numOfPeople; i++)
             {
