@@ -58,11 +58,12 @@ int main()
         }
         count++;
     }
+    printf("%d\n", totalDistance);
     students[count] = 1;
     for (i = 0; i < numStudents + 1; i++)
     {
         printf("%d ", students[i]);
     }
-    printf("\n%d", totalDistance);
+    printf("\n");
     return 0;
 }
